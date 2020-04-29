@@ -70,6 +70,35 @@ class InstaBot:
         self.print_names(unfollowers_names)
         self.unfollowers = unfollowers_names
 
+    def get_blue_tick_following(self):
+        print("Getting Blue-Tick Following for {}".format(self.username))
+        self.driver.find_element_by_xpath(
+            "//a[contains(@href, '/{}/')]".format(self.username)).click()
+        sleep(2)
+        self.driver.find_element_by_xpath(
+            "//a[contains(@href, '/following')]").click()
+        sleep(4)
+        scroll_box = self.driver.find_element_by_xpath(
+            "/html/body/div[4]/div/div[2]")
+        last_ht, ht = 0, 1
+        while (last_ht != ht):
+            sleep(2)
+            last_ht = ht
+            ht = self.driver.execute_script("""
+            arguments[0].scrollTo(0, arguments[0].scrollHeight);
+            return arguments[0].scrollHeight;
+            """, scroll_box)
+        spans = scroll_box.find_elements_by_xpath("//span[text()='Verified']")
+        names = []
+        for span in spans:
+            div = span.find_element_by_xpath('..')
+            link = div.find_element_by_tag_name('a')
+            names.append(link.text)
+        self.blue_tick_following = names
+        self.print_names(names)
 
-bot = InstaBot(username, password)
-bot.get_unfollowers()
+
+if __name__ == "__main__":
+
+    bot = InstaBot(username, password)
+    bot.get_blue_tick_following()
