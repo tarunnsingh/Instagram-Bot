@@ -1,4 +1,5 @@
 /env
+/data
 __pycache__
 .vscode
 credentials.py

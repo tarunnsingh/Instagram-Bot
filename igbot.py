@@ -1,6 +1,6 @@
 from time import sleep
 from selenium import webdriver
-
+import os
 
 class InstaBot:
     def __init__(self, username, password):
@@ -46,16 +46,6 @@ class InstaBot:
         self.print_names(names)
         return names
 
-    def testbutton(self):
-        self.driver.find_element_by_xpath(
-            "//a[contains(@href, '/{}/')]".format(self.username)).click()
-        sleep(4)
-        self.driver.find_element_by_xpath(
-            "//a[contains(@href, '/followers')]").click()
-        sleep(4)
-        self.driver.refresh()
-        sleep(4)
-
     def get_unfollowers(self):
         print("Getting Unfollowers for {}".format(self.username))
         self.driver.find_element_by_xpath(
@@ -68,6 +58,8 @@ class InstaBot:
         print("Unfollowers=====================================>")
         self.print_names(unfollowers_names)
         self.unfollowers = unfollowers_names
+        self.driver.find_element_by_xpath("/html/body/div[1]/section/nav/div[2]/div/div/div[3]/div/div[1]/div/a").click()
+        sleep(2)
 
     def get_blue_tick_following(self):
         print("Getting Blue-Tick Following for {}".format(self.username))
@@ -95,3 +87,25 @@ class InstaBot:
             names.append(link.text)
         self.blue_tick_following = names
         self.print_names(names)
+
+    def persist_data(self):
+        directory = self.username
+        parent_dir = "./data/"
+        self.path = os.path.join(parent_dir, directory)
+        os.mkdir(self.path)
+
+        if(self.unfollowers != None and self.blue_tick_following != None):
+            fname = self.path + '/unfollowers.txt'
+            txtfile = open(fname, 'w')
+            txtfile.write(str(self.unfollowers))
+            txtfile.close()
+
+            fname = self.path + '/bt_following.txt'
+            txtfile = open(fname, 'w')
+            txtfile.write(str(self.blue_tick_following))
+            txtfile.close()
+
+
+    def remove_unfollowers(self):
+        to_remove = [name for name in self.unfollowers if name not in self.blue_tick_following]
+        to_remove = to_remove[:25]
