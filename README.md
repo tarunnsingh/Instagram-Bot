@@ -13,7 +13,7 @@
 8. Following is the description of functions.
 
 ## Bot Functions:
-The functions of the bot are pretty state forward till now. This bot uses **selenium** to automate Google Chrome to perform it's tasks. The functions include:
+The functions of the bot are pretty straight-forward till now. This bot uses **selenium** to automate Google Chrome to perform it's tasks. The functions include:
 1. List of Followers
 2. List of Following
 3. List of Unfollowing
