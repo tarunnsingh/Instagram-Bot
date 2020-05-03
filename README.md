@@ -1,4 +1,4 @@
-# Instagram-Bot <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.reliablecounter.com%2Fblog%2Fingramer-the-new-instagram-bot-breakdown-and-review%2F&psig=AOvVaw0FfOguTG-Ap_aR4YjO73Rt&ust=1588627587909000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPDU65LRmOkCFQAAAAAdAAAAABAD"/>
+# Instagram-Bot <img src="https://pngimage.net/wp-content/uploads/2018/06/icono-instagram-peque%C3%B1o-png-3.png" width="2.5%"/>
 
 ### Caution: This bot is not meant for commercial purposes, created for educational and learning purpose only
 
