@@ -1,14 +1,29 @@
 # Instagram-Bot
 
-## Caution:
+### Caution: This bot is not meant for commercial purposes, created for educational and learning purpose only
 
-### "This bot is not meant for commercial purposes, created for educational and learning purpose only"
+## Steps to Run Locally (Tested on Python 3.6) 
+1. Clone the repo.
+2. Navigate to the cloned directory.
+3. Create a virtual environment, for the current project by running the following command ```py -m venv env```.
+4. Then install all the required libraries by running ```pip install requirements.txt```.
+5. Create a folder named **data** in the same directory. //To be included in code later.
+6. Add a credentials.py file, within it declare two variables with your **username** and **password**.
+7. Now run the **main.py** file using ```python main.py```. 
+8. Following is the description of functions.
 
-## Functions till now:
+## Bot Functions:
+The functions of the bot are pretty straight-forward till now. This bot uses **selenium** to automate Google Chrome to perform it's tasks. The functions include:
+1. List of Followers
+2. List of Following
+3. List of Unfollowing
+4. List of Blue-Tick Following
+5. Unfollow the Unfollowers based on count.
+6. Retain information of the user handles unfollowed.
 
-1. Get List of Followers
-2. Get List of Following
-3. Get List of Unfollowing
-4. Get List of Blue-Tick Following
+## What's coming more?
+AI powered comments on images. (Help Needed)
 
-## Storing DATA Locally
+### Have Suggestions or if you would want to contribute, just add a PR (Tests to be added soon.)
+
+Created with ❤️ by Tarun.
