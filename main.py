@@ -7,7 +7,7 @@ if __name__ == "__main__":
 
     #Initilize Bot
     # bot_1 = InstaBot(username_1, password_1)
-    bot_2 = InstaBot(username_2, password_2)
+    bot = InstaBot(username_2, password_2)
     # Get unfollowers List
     # bot.get_unfollowers()
     
@@ -19,4 +19,4 @@ if __name__ == "__main__":
 
     # Unfollow Unfollwers
     # bot_1.unfollow_unfollowers(50)
-    bot_2.unfollow_unfollowers(10)
+    bot.unfollow_unfollowers_bySearch(10)

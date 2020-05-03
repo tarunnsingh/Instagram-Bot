@@ -1,5 +1,9 @@
 from time import sleep
 from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 import os
 import glob
 import json
@@ -55,12 +59,16 @@ class InstaBot:
         return names
 
     def get_unfollowers(self):
+        if(not self.isLoggedIn):
+            self._login()
         print("Getting Unfollowers for {}".format(self.username))
         self.driver.find_element_by_xpath(
             "//a[contains(@href, '/{}/')]".format(self.username)).click()
         sleep(2)
         self.followers = self.get_names('followers')
         self.following = self.get_names('following')
+        self.persist_data_general('followers', self.followers)
+        self.persist_data_general('following', self.following)
         unfollowers_names = [
             name for name in self.following if name not in self.followers]
         print("Unfollowers=====================================>")
@@ -100,7 +108,6 @@ class InstaBot:
         directory = self.username
         parent_dir = "./data/"
         self.path = os.path.join(parent_dir, directory)
-        os.mkdir(self.path)
 
         if(self.unfollowers != None and self.blue_tick_following != None):
             fname = self.path + '/unfollowers.txt'
@@ -123,6 +130,7 @@ class InstaBot:
             txtfile = open(fname, 'w')
             txtfile.write(str(list_data))
             txtfile.close()
+
 
 
     def unfollow_unfollowers(self, count):
@@ -181,4 +189,38 @@ class InstaBot:
                 self.driver.find_element_by_xpath("//button[text()='Unfollow']").click()
                 sleep(2)
                 print("Successfully Unfollowed {}".format(name))
-                
+
+    def unfollow_unfollowers_bySearch(self, count):
+        local_usernames_list = [ f.name for f in os.scandir("./data") if f.is_dir() ]
+        if self.username in local_usernames_list : 
+            print("Local data available for {}".format(self.username))
+            path = os.path.join('./data', self.username)
+        else:
+            print("No local data available for {}".format(self.username))
+            quit()
+        
+        unf = open(path + "/unfollowers.txt", 'r')
+        self.unfollowers = (unf.read()).strip("][").replace("'", "").split(", ")
+        
+        btf = open(path + "/bt_following.txt", 'r')
+        self.blue_tick_following = (btf.read()).strip("][").replace("'", "").split(", ")
+        
+        print("{} has {} Unfollwers and {} BT Following.".format(self.username, len(self.unfollowers), len(self.blue_tick_following)))
+
+        if count > 50 :
+            print("Set count to unfollow less than 50")
+            quit()
+        else:
+            if(not self.isLoggedIn):
+                self._login()
+            for user in self.unfollowers:
+                sleep(2)
+                searchbox = self.driver.find_element_by_xpath("/html/body/div[1]/section/nav/div[2]/div/div/div[2]/div/div/span[2]").click()
+                entered_username = self.driver.find_element_by_xpath("//input[@placeholder=\"Search\"]").send_keys(user)
+                sleep(4)
+                once_enter = self.driver.find_element_by_xpath("//input[@placeholder=\"Search\"]").send_keys(Keys.ENTER)
+                twice_enter = self.driver.find_element_by_xpath("//input[@placeholder=\"Search\"]").send_keys(Keys.ENTER)
+                sleep(2)
+                self.driver.find_element_by_xpath("/html/body/div[1]/section/main/div/header/section/div[1]/div[2]/span/span[1]/button/div").click()
+                sleep(2)
+                self.driver.find_element_by_xpath("//button[text()='Unfollow']").click()
