@@ -210,7 +210,7 @@ class InstaBot:
             once_enter = self.driver.find_element_by_xpath("//input[@placeholder=\"Search\"]").send_keys(Keys.ENTER)
             twice_enter = self.driver.find_element_by_xpath("//input[@placeholder=\"Search\"]").send_keys(Keys.ENTER)
             sleep(2)
-            self.driver.find_element_by_xpath("//a[contains(@href, '/following')]").click()
+            self.driver.find_element_by_xpath("//a[contains(@href, '/followers')]").click()
             sleep(4)
             scroll_box = self.driver.find_element_by_xpath("/html/body/div[4]/div/div[2]")
             last_ht, ht = 0, 1
@@ -225,7 +225,10 @@ class InstaBot:
                 for target in targets:
                     target.click()
                     followed = followed + 1
+                    sleep(1)
             print("Followed {} people.".format(followed))
+            self.driver.refresh()
+            sleep(4)
             
 
             
