@@ -14,4 +14,4 @@ if __name__ == "__main__":
     # bot.get_blue_tick_following()
     
     # Unfollow Unfollwers
-    bot.unfollow_unfollowers_by_search(50)
+    bot.follow(10, 5)

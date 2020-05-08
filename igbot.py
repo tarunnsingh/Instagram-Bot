@@ -199,11 +199,34 @@ class InstaBot:
         if((user_count < 1 or user_count > 10) and user_count*follow_count > 120):
             print("Set the follow user count in proper range! [ < 120]")
             quit()
-        self.driver.find_element_by_xpath("//a[contains(@href, '/{}/')]".format(self.username)).click()
-        sleep(2)
-        self.driver.find_element_by_xpath("//a[contains(@href, '/followers')]").click()
-        sleep(2)
-
+        followed = 0
+        self.followers = self._read_list('followers')
+        self._print_names(self.followers)
+        for user in self.followers[:user_count]:
+            sleep(2)
+            searchbox = self.driver.find_element_by_xpath("/html/body/div[1]/section/nav/div[2]/div/div/div[2]/div/div/span[2]").click()
+            entered_username = self.driver.find_element_by_xpath("//input[@placeholder=\"Search\"]").send_keys(user)
+            sleep(4)
+            once_enter = self.driver.find_element_by_xpath("//input[@placeholder=\"Search\"]").send_keys(Keys.ENTER)
+            twice_enter = self.driver.find_element_by_xpath("//input[@placeholder=\"Search\"]").send_keys(Keys.ENTER)
+            sleep(2)
+            self.driver.find_element_by_xpath("//a[contains(@href, '/following')]").click()
+            sleep(4)
+            scroll_box = self.driver.find_element_by_xpath("/html/body/div[4]/div/div[2]")
+            last_ht, ht = 0, 1
+            while (last_ht != ht and followed < follow_count):
+                sleep(2)
+                last_ht = ht
+                ht = self.driver.execute_script("""
+                arguments[0].scrollTo(0, arguments[0].scrollHeight);
+                return arguments[0].scrollHeight;
+                """, scroll_box)
+                targets = scroll_box.find_elements_by_xpath("//button[text()='Follow']")
+                for target in targets:
+                    target.click()
+                    followed = followed + 1
+            print("Followed {} people.".format(followed))
+            
 
             
             
