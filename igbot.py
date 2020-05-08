@@ -200,9 +200,11 @@ class InstaBot:
             print("Set the follow user count in proper range! [ < 120]")
             quit()
         followed = 0
+        follow_count_per_user = user_count/follow_count
         self.followers = self._read_list('followers')
         self._print_names(self.followers)
         for user in self.followers[:user_count]:
+            n = follow_count_per_user
             sleep(2)
             searchbox = self.driver.find_element_by_xpath("/html/body/div[1]/section/nav/div[2]/div/div/div[2]/div/div/span[2]").click()
             entered_username = self.driver.find_element_by_xpath("//input[@placeholder=\"Search\"]").send_keys(user)
@@ -214,18 +216,22 @@ class InstaBot:
             sleep(4)
             scroll_box = self.driver.find_element_by_xpath("/html/body/div[4]/div/div[2]")
             last_ht, ht = 0, 1
-            while (last_ht != ht and followed < follow_count):
+            while (last_ht != ht and n > 0):
                 sleep(2)
                 last_ht = ht
+                targets = scroll_box.find_elements_by_xpath("//button[text()='Follow']")
+                for i, target in enumerate(targets):
+                    if(not i):
+                        continue
+                    target.click()
+                    followed = followed + 1
+                    n = n -1
+                    sleep(1)
                 ht = self.driver.execute_script("""
                 arguments[0].scrollTo(0, arguments[0].scrollHeight);
                 return arguments[0].scrollHeight;
                 """, scroll_box)
-                targets = scroll_box.find_elements_by_xpath("//button[text()='Follow']")
-                for target in targets:
-                    target.click()
-                    followed = followed + 1
-                    sleep(1)
+                
             print("Followed {} people.".format(followed))
             self.driver.refresh()
             sleep(4)
