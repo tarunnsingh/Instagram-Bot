@@ -20,6 +20,7 @@ The functions of the bot are pretty straight-forward till now. This bot uses **s
 4. List of Blue-Tick Following
 5. Unfollow the Unfollowers based on count.
 6. Retain information of the user handles unfollowed.
+7. Follow users based on count.
 
 ## What's coming more?
 AI powered comments on images. (Help Needed)
