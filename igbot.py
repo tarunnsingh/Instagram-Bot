@@ -191,5 +191,19 @@ class InstaBot:
                 self.unfollowed_success.append(user)
             
             self._persist_data('unfollowed_success', self.unfollowed_success)
+    
+
+    def follow(self, user_count, follow_count):
+        if(not self.isLoggedIn):
+            self._login()
+        if((user_count < 1 or user_count > 10) and user_count*follow_count > 120):
+            print("Set the follow user count in proper range! [ < 120]")
+            quit()
+        self.driver.find_element_by_xpath("//a[contains(@href, '/{}/')]".format(self.username)).click()
+        sleep(2)
+        self.driver.find_element_by_xpath("//a[contains(@href, '/followers')]").click()
+        sleep(2)
+
+
             
             
