@@ -10,6 +10,7 @@ import json
 import time
 from datetime import datetime
 import sys
+from random import randrange
 from tqdm import tqdm
 
 class InstaBot:
@@ -29,8 +30,11 @@ class InstaBot:
         self.driver.find_element_by_xpath(
             "//button[@type=\"submit\"]").click()
         sleep(10)
-        self.driver.find_element_by_xpath(
-            "//button[contains(text(), 'Not Now')]").click()
+        try:
+            self.driver.find_element_by_xpath(
+                "//button[contains(text(), 'Not Now')]").click()
+        except:
+            print("No Not Now Button!")
         self.isLoggedIn = True
         
         print("Logged in to: {}".format(self.username))
@@ -204,37 +208,40 @@ class InstaBot:
         self.followers = self._read_list('followers')
         self._print_names(self.followers)
         for user in self.followers[:user_count]:
-            n = follow_count_per_user
-            sleep(2)
-            searchbox = self.driver.find_element_by_xpath("/html/body/div[1]/section/nav/div[2]/div/div/div[2]/div/div/span[2]").click()
-            entered_username = self.driver.find_element_by_xpath("//input[@placeholder=\"Search\"]").send_keys(user)
-            sleep(4)
-            once_enter = self.driver.find_element_by_xpath("//input[@placeholder=\"Search\"]").send_keys(Keys.ENTER)
-            twice_enter = self.driver.find_element_by_xpath("//input[@placeholder=\"Search\"]").send_keys(Keys.ENTER)
-            sleep(2)
-            self.driver.find_element_by_xpath("//a[contains(@href, '/followers')]").click()
-            sleep(4)
-            scroll_box = self.driver.find_element_by_xpath("/html/body/div[4]/div/div[2]")
-            last_ht, ht = 0, 1
-            while (last_ht != ht and n > 0):
+            try:
+                n = follow_count_per_user
                 sleep(2)
-                last_ht = ht
-                targets = scroll_box.find_elements_by_xpath("//button[text()='Follow']")
-                for i, target in enumerate(targets):
-                    if(not i):
-                        continue
-                    target.click()
-                    followed = followed + 1
-                    n = n -1
-                    sleep(1)
-                ht = self.driver.execute_script("""
-                arguments[0].scrollTo(0, arguments[0].scrollHeight);
-                return arguments[0].scrollHeight;
-                """, scroll_box)
-                
-            print("Followed {} people.".format(followed))
-            self.driver.refresh()
-            sleep(4)
+                searchbox = self.driver.find_element_by_xpath("/html/body/div[1]/section/nav/div[2]/div/div/div[2]/div/div/span[2]").click()
+                entered_username = self.driver.find_element_by_xpath("//input[@placeholder=\"Search\"]").send_keys(user)
+                sleep(4)
+                once_enter = self.driver.find_element_by_xpath("//input[@placeholder=\"Search\"]").send_keys(Keys.ENTER)
+                twice_enter = self.driver.find_element_by_xpath("//input[@placeholder=\"Search\"]").send_keys(Keys.ENTER)
+                sleep(2)
+                self.driver.find_element_by_xpath("//a[contains(@href, '/followers')]").click()
+                sleep(4)
+                scroll_box = self.driver.find_element_by_xpath("/html/body/div[4]/div/div[2]")
+                last_ht, ht = 0, 1
+                while (last_ht != ht and n > 0):
+                    sleep(2)
+                    last_ht = ht
+                    targets = scroll_box.find_elements_by_xpath("//button[text()='Follow']")
+                    for i, target in enumerate(targets):
+                        if(not i):
+                            continue
+                        target.click()
+                        followed = followed + 1
+                        n = n -1
+                        sleep(randrange(4) + 1)
+                    ht = self.driver.execute_script("""
+                    arguments[0].scrollTo(0, arguments[0].scrollHeight);
+                    return arguments[0].scrollHeight;
+                    """, scroll_box)
+                    
+                print("Followed {} people.".format(followed))
+                self.driver.refresh()
+                sleep(4)
+            except:
+                print("Skipping user {}".format(user))
             
 
             
