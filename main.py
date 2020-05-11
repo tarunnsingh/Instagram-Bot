@@ -9,9 +9,9 @@ if __name__ == "__main__":
     bot = InstaBot(username_2, password_2)
     
     # bot.get_followers_following()
-    # bot.get_unfollowers()
-    # bot.get_unfollowing()
+    bot.get_unfollowers()
+    bot.get_unfollowing()
     # bot.get_blue_tick_following()
     
     # Unfollow Unfollwers
-    bot.follow(10, 5)
+    bot.unfollow_unfollowers_by_search(45)
