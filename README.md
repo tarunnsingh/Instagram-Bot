@@ -1,4 +1,4 @@
-# Instagram-Bot <img src="https://pngimage.net/wp-content/uploads/2018/06/icono-instagram-peque%C3%B1o-png-3.png" width="2.5%"/>
+# Instagram-Bot <img src="https://pngimage.net/wp-content/uploads/2018/06/icono-instagram-peque%C3%B1o-png-3.png" width="3.5%"/><img src="https://i.pinimg.com/originals/f6/d7/ef/f6d7ef4b5b015be7cf607e2087c0a244.png" width="3%"/>
 
 ### Caution: This bot is not meant for commercial purposes, created for educational and learning purpose only
 
