@@ -4,6 +4,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
+
 import os
 import glob
 import json
@@ -242,7 +244,51 @@ class InstaBot:
                 sleep(4)
             except:
                 print("Skipping user {}".format(user))
-            
+    
+    def random_like(self):
+        if(not self.isLoggedIn):
+            self._login()
+        self.followers = self._read_list('followers')
+        self._print_names(self.followers)
+        for user in self.followers:
+            try:
+                sleep(2)
+                searchbox = self.driver.find_element_by_xpath("/html/body/div[1]/section/nav/div[2]/div/div/div[2]/div/div/span[2]").click()
+                entered_username = self.driver.find_element_by_xpath("//input[@placeholder=\"Search\"]").send_keys(user)
+                sleep(4)
+                once_enter = self.driver.find_element_by_xpath("//input[@placeholder=\"Search\"]").send_keys(Keys.ENTER)
+                twice_enter = self.driver.find_element_by_xpath("//input[@placeholder=\"Search\"]").send_keys(Keys.ENTER)
+                sleep(2)
+                self.driver.find_element_by_xpath("//a[contains(@href, '/followers')]").click()
+                sleep(4)
+                scroll_box = self.driver.find_element_by_xpath("/html/body/div[4]/div/div[2]")
+                last_ht, ht = 0, 1
+                while (last_ht != ht and n > 0):
+                    sleep(2)
+                    last_ht = ht
+                    links = scroll_box.find_elements_by_tag_name('a')
+                    names = [title.text for title in links if title.text != '']
+                    for i, target in enumerate(names):
+                        if(not i):
+                            continue
+                        sleep(2)
+                        sb = self.driver.find_element_by_xpath("/html/body/div[1]/section/nav/div[2]/div/div/div[2]/div/div/span[2]").click()
+                        eu = self.driver.find_element_by_xpath("//input[@placeholder=\"Search\"]").send_keys(user)
+                        sleep(4)
+                        oe = self.driver.find_element_by_xpath("//input[@placeholder=\"Search\"]").send_keys(Keys.ENTER)
+                        te = self.driver.find_element_by_xpath("//input[@placeholder=\"Search\"]").send_keys(Keys.ENTER)
+                        sleep(2)
+                    ht = self.driver.execute_script("""
+                    arguments[0].scrollTo(0, arguments[0].scrollHeight);
+                    return arguments[0].scrollHeight;
+                    """, scroll_box)
+                    
+                print("Followed {} people.".format(followed))
+                self.driver.refresh()
+                sleep(4)
+            except:
+                print("Skipping user {}".format(user))
+
 
             
             
