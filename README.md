@@ -1,9 +1,8 @@
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 [![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
-# Instagram-Bot  
-<img src="https://pngimage.net/wp-content/uploads/2018/06/icono-instagram-peque%C3%B1o-png-3.png" width="3.5%"/><img src="https://i.pinimg.com/originals/f6/d7/ef/f6d7ef4b5b015be7cf607e2087c0a244.png" width="3%"/>
+# Instagram-Bot<img src="https://pngimage.net/wp-content/uploads/2018/06/icono-instagram-peque%C3%B1o-png-3.png" width="3.5%"/><img src="https://i.pinimg.com/originals/f6/d7/ef/f6d7ef4b5b015be7cf607e2087c0a244.png" width="3%"/>
 
-### ⚠️ Caution: This bot is not meant for commercial purposes, created for educational and learning purpose only
+### ⚠️ Caution: Not meant for commercial or spamming purposes, created for educational and learning purpose only.
 
 ## Steps to Run Locally (Tested on Python 3.6) 
 1. Clone the repo.
