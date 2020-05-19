@@ -1,6 +1,7 @@
 /env
 /data
 /test_data
+/driver
 __pycache__
 .vscode
 credentials.py

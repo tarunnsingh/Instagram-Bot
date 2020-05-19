@@ -4,6 +4,12 @@
 
 ### ⚠️ Caution: Not meant for commercial or spamming purposes, created for educational and learning purpose only.
 
+## Steps to Create a Release (.exe) using PyInstaller:
+1. Run ```pip install pyinstaller``` to install Pyinstaller.
+2. Run the following command to create a the build (.exe) : ```pyinstaller ./main.py --onefile --icon=favicon.ico --add-binary "./driver/chromedriver.exe;./driver"```
+3. This creates 2 directories namely *build* and *dist*.
+4. Go to *dist* and open main.exe.
+
 ## Steps to Run Locally (Tested on Python 3.6) 
 1. Clone the repo.
 2. Navigate to the cloned directory.

@@ -5,6 +5,11 @@ from tkinter import *
 warnings.filterwarnings('ignore')
 
 
+# Note: UNCOMMENT ANY PART 1. For Working on GUI or 2. Working on development.
+
+
+# FOR GENERATING RELEASE ==============================================================================================
+
 root = Tk()
 root.title("InstaBot")
 
@@ -30,6 +35,7 @@ start_bot_butoon = Button(root, padx=50, pady=10, text="Automate!", command= sta
 root.mainloop()
 
 
+# FOR DEVELOPMENT ======================================================================================================
 
 #Initilize Bot
 # bot = InstaBot(username_2, password_2)

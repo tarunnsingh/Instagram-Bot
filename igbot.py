@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 
+
 import os
 import glob
 import json
@@ -15,6 +16,14 @@ import sys
 from random import randrange
 from tqdm import tqdm
 
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.dirname(__file__)
+    return os.path.join(base_path, relative_path)
+
+
 class InstaBot:
     def __init__(self, username, password):
         self.username = username
@@ -22,7 +31,7 @@ class InstaBot:
         self.isLoggedIn = False
         
     def _login(self):
-        self.driver = webdriver.Chrome()
+        self.driver = webdriver.Chrome(resource_path('./driver/chromedriver.exe'))
         self.driver.get("https://instagram.com")
         sleep(2)
         self.driver.find_element_by_xpath(
