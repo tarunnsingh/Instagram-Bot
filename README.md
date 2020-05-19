@@ -2,11 +2,15 @@
 [![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 # Instagram-Bot<img src="https://pngimage.net/wp-content/uploads/2018/06/icono-instagram-peque%C3%B1o-png-3.png" width="3.5%"/><img src="https://i.pinimg.com/originals/f6/d7/ef/f6d7ef4b5b015be7cf607e2087c0a244.png" width="3%"/>
 
-### ⚠️ Caution: Not meant for commercial or spamming purposes, created for educational and learning purpose only.
+### ⚠️ Caution: 
+**Not meant for commercial or spamming purposes, created for educational and learning purpose only.**
+
+### *Check releases section for downloadable single executable file.*
 
 ## Steps to Create a Release (.exe) using PyInstaller:
 1. Run ```pip install pyinstaller``` to install Pyinstaller.
-2. Run the following command to create a the build (.exe) : ```pyinstaller ./main.py --onefile --icon=favicon.ico --add-binary "./driver/chromedriver.exe;./driver"```
+2. Run the following command to create a the build (.exe) :  
+```pyinstaller ./main.py --onefile --icon=favicon.ico --add-binary "./driver/chromedriver.exe;./driver"```
 3. This creates 2 directories namely *build* and *dist*.
 4. Go to *dist* and open main.exe.
 
