@@ -2,6 +2,8 @@
 /data
 /test_data
 /driver
+/build
+/dist
 __pycache__
 .vscode
 credentials.py
