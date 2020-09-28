@@ -1,10 +1,10 @@
 /env
-/data
 /test_data
-/driver
 /build
 /dist
 __pycache__
 .vscode
 credentials.py
 test.py
+driver/chromedriver.exe
+igbot.pyc

@@ -46,6 +46,11 @@ class InstaBot:
                 "//button[contains(text(), 'Not Now')]").click()
         except:
             print("No Not Now Button!")
+        try:
+            self.driver.find_element_by_xpath(
+                "//button[contains(text(), 'Not Now')]").click()
+        except:
+            print("No Not Now Button!")
         self.isLoggedIn = True
         
         print("Logged in to: {}".format(self.username))
