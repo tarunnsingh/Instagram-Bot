@@ -11,7 +11,7 @@
 
 ### _Check releases section for downloadable single executable file._
 
-## Steps to Create a Release (.exe) using PyInstaller:
+## Steps to Create a Release (.exe) using PyInstaller: :footprints:
 
 1. Run `pip install pyinstaller` to install Pyinstaller.
 2. Run the following command to create a the build (.exe) :  
@@ -19,7 +19,7 @@
 3. This creates 2 directories namely _build_ and _dist_.
 4. Go to _dist_ and open main.exe.
 
-## Steps to Run Locally (Tested on Python 3.6)
+## Steps to Run Locally (Tested on Python 3.6) :footprints:
 
 1. Clone the repo.
 2. Navigate to the cloned directory.
@@ -32,7 +32,7 @@
 
 ## GUI has been added for Client Friendly Interface
 
-## Bot Functions:
+## Bot Functions: :robot:
 
 The functions of the bot are pretty straight-forward till now. This bot uses **selenium** to automate Google Chrome to perform it's tasks. The functions include:
 
@@ -44,7 +44,7 @@ The functions of the bot are pretty straight-forward till now. This bot uses **s
 6. Retain information of the user handles unfollowed.
 7. Follow users based on count.
 
-## What's coming more?
+## What's coming more? :astonished:
 
 AI powered comments on images. (Help Needed)
 
