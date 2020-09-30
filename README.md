@@ -11,7 +11,7 @@
 
 ### _Check releases section for downloadable single executable file._
 
-## Steps to Create a Release (.exe) using PyInstaller:
+## Steps to Create a Release (.exe) using PyInstaller: :footprints:
 
 1. Run `pip install pyinstaller` to install Pyinstaller.
 2. Run the following command to create a the build (.exe) :  
