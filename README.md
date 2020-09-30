@@ -44,7 +44,7 @@ The functions of the bot are pretty straight-forward till now. This bot uses **s
 6. Retain information of the user handles unfollowed.
 7. Follow users based on count.
 
-## What's coming more? :thinking:
+## What's coming more? :astonished:
 
 AI powered comments on images. (Help Needed)
 
